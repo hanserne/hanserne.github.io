@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> Analytics </title>
+
+          <script>
+
+
+          window.onload = function () {
+
+
+          /* Bubble-chartet */
+          var chart1 = new CanvasJS.Chart("chartContainer1", {
+          	animationEnabled: true,
+            title:{
+                   text: "Indkøbsbehov",
+                   fontColor: "#1abc9c",
+                   fontStyle: "normal",
+                   fontWeight: "normal",
+                   fontFamily: "Montserrat",
+                   horizontalAlign: "center",
+                   fontsize: "12px",
+                 },
+          	axisX: {
+          		/*title:"Life Expectancy (in Years)"*/
+          	},
+          	axisY: {
+          		/*title:"Fertility Rate",*/
+              gridColor: "white" ,
+              interval: 2,
+              tickLength: 5,
+          	},
+          	legend:{
+          		horizontalAlign: "left"
+          	},
+          	data: [{
+          		type: "bubble",
+          		showInLegend: false,
+          		legendText: "Size of Bubble Represents Population in Millions",
+          		legendMarkerType: "circle",
+          		legendMarkerColor: "#1abc9c",
+          		toolTipContent: "<b>{name}</b><br/>Mængde: {x} pk<br/> Fertility Rate: {y}<br/> Population: {z}mn",
+          		dataPoints: [
+          			{ x: 63.7, y: 4.84, z:320.896, name: "Rugbrød" },
+          			{ x: 74.9, y: 2.21, z: 125.890, name: "Mælk" },
+          			{ x: 63.8, y: 1.46, z:127.141, name: "Oksekød" },
+          			{ x: 69.6, y: 4.51, z: 36.115, name: "Leverpostej" },
+          			{ x: 68.4, y: 2.94, z: 101.716, name: "Ost" },
+          			{ x: 70, y: 2.17, z: 28.656, name: "Knækbrød" },
+          			{ x: 71.2, y: 1.51, z: 45.154, name: "Skinke" },
+          			{ x: 59.4, y: 2.34, z: 55, name: "Toiletpapir" },
+
+          		]
+          	}]
+          });
+          chart1.render();
+
+          /* Cirle-diagrammet */
+          var chart2 = new CanvasJS.Chart("chartContainer2", {
+          	theme: "light2",
+          	exportFileName: "Doughnut Chart",
+          	exportEnabled: false,
+          	animationEnabled: true,
+            title:{
+                   text: "Expenses",
+                   fontColor: "#1abc9c",
+                   fontStyle: "normal",
+                   fontWeight: "normal",
+                   fontFamily: "Montserrat",
+                   horizontalAlign: "center",
+                   fontsize: "12px",
+                 },
+          	legend:{
+          		cursor: "pointer",
+          		itemclick: explodePie
+          	},
+          	data: [{
+          		type: "doughnut",
+          		innerRadius: 90,
+          		showInLegend: false,
+          		toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+          		indexLabel: "{name} - #percent%",
+          		dataPoints: [
+          			{ y: 450, name: "Mad" },
+          			{ y: 120, name: "Forsikringer" },
+          			{ y: 300, name: "Rejser" },
+          			{ y: 800, name: "Bolig" },
+          			{ y: 150, name: "Uddannelse" },
+          			{ y: 150, name: "Shopping"},
+          			{ y: 250, name: "Øvrige" }
+          		]
+          	}]
+          });
+          chart2.render();
+
+          function explodePie (e) {
+          	if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+          		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+          	} else {
+          		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+          	}
+          	e.chart.render();
+          }
+
+
+
+          var totalRevenue = 15341110,
+              totalUsers = 7687036;
+          // CanvasJS doughnut chart to show annual sales percentage from United States(US)
+          var antal_kunder = new CanvasJS.Chart("antal_kunder", {
+            animationEnabled: true,
+            backgroundColor: "transparent",
+            title: {
+              fontColor: "#848484",
+              fontSize: 70,
+              horizontalAlign: "center",
+              text: "47%",
+              verticalAlign: "center"
+            },
+            toolTip: {
+              backgroundColor: "#ffffff",
+              borderThickness: 0,
+              cornerRadius: 0,
+              fontColor: "#424242"
+            },
+            data: [
+              {
+                explodeOnClick: false,
+                innerRadius: "96%",
+                radius: "90%",
+                startAngle: 270,
+                type: "doughnut",
+                dataPoints: [
+                  { y: 47, color: "#c70000", toolTipContent: "United States: $<span>" + CanvasJS.formatNumber(Math.round(47 / 100 * totalRevenue), '#,###,###') + "</span>" },
+                  { y: 53, color: "#424242", toolTipContent: null }
+                ]
+              }
+            ]
+          });
+          antal_kunder.render();
+
+          // CanvasJS spline area chart to show pageviews from Jan 2015 - Dec 2015
+          var pageViewsSplineAreaChart = new CanvasJS.Chart("page-views-spline-area-chart", {
+            animationEnabled: true,
+            backgroundColor: "transparent",
+            axisX: {
+              gridThickness: 0,
+              lineThickness: 0,
+              maximum: new Date("1 Dec 2015"),
+              minimum: new Date("1 Jan 2015"),
+              tickLength: 0,
+              valueFormatString: " "
+            },
+            axisY: {
+              gridThickness: 0,
+              lineThickness: 0,
+              tickLength: 0,
+              valueFormatString: " "
+            },
+            toolTip: {
+              backgroundColor: "#ffffff",
+              borderThickness: 0,
+              cornerRadius: 0,
+              fontColor: "#424242"
+            },
+            data: [
+              {
+                color: "#424242",
+                fillOpacity: 1,
+                lineColor: "#ffffff",
+                lineThickness: 3,
+                markerSize: 0,
+                type: "splineArea",
+                dataPoints: [
+                  { x: new Date("1 Jan 2015"), y: 2171991 },
+                  { x: new Date("1 Feb 2015"), y: 2678910 },
+                  { x: new Date("1 Mar 2015"), y: 3215487 },
+                  { x: new Date("1 Apr 2015"), y: 2213754 },
+                  { x: new Date("1 May 2015"), y: 2584561 },
+                  { x: new Date("1 Jun 2015"), y: 3178647 },
+                  { x: new Date("1 Jul 2015"), y: 3645041 },
+                  { x: new Date("1 Aug 2015"), y: 2914568 },
+                  { x: new Date("1 Sep 2015"), y: 3985421 },
+                  { x: new Date("1 Oct 2015"), y: 3754219 },
+                  { x: new Date("1 Nov 2015"), y: 3971047 },
+                  { x: new Date("1 Dec 2015"), y: 4121538 }
+                ]
+              }
+            ]
+          });
+          pageViewsSplineAreaChart.render();
+
+        } /* den her er vigtig fordi den ender function kaldet, helt oppe i toppen. */
+
+
+          </script>
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
+
+<body>
+
+
+  <!--  Header section -->
+  <div id="header">
+    <div class="container">
+      <a id="header-title" href="index.html"> Min Butik </a>
+      <ul id="header-nav">
+          <li><a href="analytics.html"> Analytics </a>  </li>
+          <li><a href="data.html"> Upload Data </a>  </li>
+          <li><a href="mailto:emilbjerre@gmail.com" target="_top"> Kontakt </a></li>
+      </ul>
+   </div>
+  </div>
+
+
+
+
+<!--  Content section -->
+<div id="content">
+  <div class="container">
+    <div  class="about">
+      <div class="about-author">
+        <img src="analytics.png" height="120" width="120">
+      </div>
+       <h1 class="about-title"> Advanced Analytics</h1>
+      <div class="about-content">
+        <p> På denne side vil vi levere højfrekvente analyser i realtid. </p>
+      </div>
+      <h4 class="about-plot"> Nuværende kundebehov </h4>
+      <p> Nedenstående baserer sig på den øjeblikkelige efterspørgsel ... </p>
+
+
+      <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <div id="chartContainer1" style="height: 420px; width: 800px;"></div>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+<!--
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+
+
+      <div class="test">
+        <div class="left"  id="antal_kunder" style= "height: 200px; width=200px;"></div>
+        <div class="right " id="page-views-spline-area-chart" style= "height: 200px; width=200px;"></div>
+      </div>
+
+
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+      <br>
+      <p> Her kan man jo så meget passende skrive en masse tekst. </p>
+
+
+
+-->
+
+  </div>
+</div>
+</div>
+
+
+<!--  Footer section -->
+<div id="footer">
+  <div class="container">
+    <div class="column">
+      <h4> Links </h4>
+      <p>
+        <a href="https://www.google.dk/"> Facebook </a>
+        <br>
+        <a href="https://www.google.dk/"> Twitter </a>
+      </p>
+    </div>
+    <div class="column">
+      <h4> My Store </h4>
+      <p> Hi there! </p>
+    </div>
+  </div>
+</div>
+
+
+  </body>
+  </html>
