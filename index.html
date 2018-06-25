@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title> Analytics </title>
+
+
+            <script>
+
+            window.onload = function () {
+
+
+
+
+            /* BIR-chartet */
+
+            var totalRevenue = 850,
+                totalUsers = 2000;
+            // CanvasJS doughnut chart to show annual sales percentage from United States(US)
+            var antal_kunder = new CanvasJS.Chart("antal_kunder", {
+              animationEnabled: true,
+              backgroundColor: "transparent",
+              title: {
+                fontColor: "#848484",
+                fontSize: 70,
+                horizontalAlign: "center",
+                text: "47%",
+                verticalAlign: "center"
+              },
+              toolTip: {
+                backgroundColor: "#ffffff",
+                borderThickness: 0,
+                cornerRadius: 0,
+                fontColor: "#424242"
+              },
+              data: [
+                {
+                  explodeOnClick: false,
+                  innerRadius: "96%",
+                  radius: "90%",
+                  startAngle: 270,
+                  type: "doughnut",
+                  dataPoints: [
+                    { y: 47, color: "#1abc9c", toolTipContent: "Din forretning <span>" + CanvasJS.formatNumber(Math.round(47 / 100 * totalRevenue), '###') + "</span>" },
+                    { y: 53, color: "#424242", toolTipContent: "Øvrige forretninger"}
+                  ]
+                }
+              ]
+            });
+            antal_kunder.render();
+
+            // CanvasJS spline area chart to show pageviews from Jan 2015 - Dec 2015
+
+            var pageViewsSplineAreaChart = new CanvasJS.Chart("page-views-spline-area-chart", {
+              animationEnabled: true,
+              backgroundColor: "transparent",
+              axisX: {
+                gridThickness: 0,
+                lineThickness: 0,
+                maximum: new Date("1 Dec 2017"),
+                minimum: new Date("1 Jan 2017"),
+                tickLength: 0,
+                valueFormatString: " "
+              },
+              axisY: {
+                gridThickness: 0,
+                lineThickness: 0,
+                tickLength: 0,
+                valueFormatString: " "
+              },
+              toolTip: {
+                backgroundColor: "#ffffff",
+                borderThickness: 0,
+                cornerRadius: 0,
+                fontColor: "#424242"
+              },
+              data: [
+                {
+                  color: "#424242",
+                  fillOpacity: 1,
+                  lineColor: "#ffffff",
+                  lineThickness: 3,
+                  markerSize: 0,
+                  type: "splineArea",
+                  dataPoints: [
+                    { x: new Date("1 Jan 2017"), y: 150 },
+                    { x: new Date("1 Feb 2017"), y: 200 },
+                    { x: new Date("1 Mar 2017"), y: 330 },
+                    { x: new Date("1 Apr 2017"), y: 330 },
+                    { x: new Date("1 May 2017"), y: 400 },
+                    { x: new Date("1 Jun 2017"), y: 450 },
+                    { x: new Date("1 Jul 2017"), y: 230 },
+                    { x: new Date("1 Aug 2017"), y: 250 },
+                    { x: new Date("1 Sep 2017"), y: 190 },
+                    { x: new Date("1 Oct 2017"), y: 300 },
+                    { x: new Date("1 Nov 2017"), y: 350 },
+                    { x: new Date("1 Dec 2017"), y: 400 }
+                  ]
+                }
+              ]
+            });
+            pageViewsSplineAreaChart.render();
+
+            var usersDoughnutChart = new CanvasJS.Chart("users-doughnut-chart", {
+              animationEnabled: true,
+              backgroundColor: "transparent",
+              toolTip: {
+                backgroundColor: "#000000",
+                borderThickness: 2,
+                cornerRadius: 0,
+                fontColor: "#ffffff",
+                contentFormatter: function (e) {
+                  return e.entries[0].dataPoint.name + ": " + CanvasJS.formatNumber(e.entries[0].dataPoint.y, '###,###') + " - " + Math.round(e.entries[0].dataPoint.y / totalUsers * 100) + "%"; // calcuting and showing percentage of users inside tooltip
+                }
+              },
+              data: [
+                {
+                  innerRadius: "82%",
+                  radius: "100%",
+                  showInLegend: false,
+                  startAngle: 180,
+                  type: "doughnut",
+                  dataPoints: [
+                    { y: 150, name: "Nye", color: "#1abc9c" },
+                    { y: 400, name: "Tilbagevendende", color: "#424242", exploded: true }
+                  ]
+                }
+              ]
+            });
+            usersDoughnutChart.render();
+
+
+
+          } /* den her er vigtig fordi den ender function kaldet, helt oppe i toppen. */
+
+            </script>
+
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+
+<body font-family="Verdana">
+
+
+
+    <!--  Header section -->
+    <div id="header">
+      <div class="container">
+        <a id="header-title" href="index.html"> Min Butik </a>
+        <ul id="header-nav">
+            <li><a href="analytics.html"> Analytics </a>  </li>
+            <li><a href="feedback.html"> Kontakt </a>  </li>
+            <li><a href="data.html"> Upload Data </a>  </li>
+            <li><a href="mailto:emilbjerre@gmail.com" target="_top"> Kontakt </a></li>
+        </ul>
+     </div>
+    </div>
+
+
+    <div id="content">
+      <div class="container">
+        <div  class="post">
+          <div class="post-author">
+            <img src="aldi.png">
+            <span> <a href="https://www.google.dk/maps/place/ALDI+NORD/@55.7055678,12.5884029,16z/data=!4m8!1m2!2m1!1zYWxkaSBrw7hiZW5oYXZuIMO4!3m4!1s0x465252eedd74c0cd:0xcc3e657ea27c6e26!8m2!3d55.7059681!4d12.5899865" target="_blank">
+              Aldi, Østerbanegade 129, København Ø</a> </span>
+          </div>
+
+          <br>
+          <!--<img src="analytics.png" height="120" width="120"> -->
+
+        <h1 class="about-plot"> Dash-board</h1>
+        <p> Vi ønsker med vores dash-board, at levere et unikt overblik over aktuelle informationer omkring jeres forretning. </p>
+
+         <div class="test">
+           <div class="left" id="page-views-spline-area-chart" style= "height: 200px; width=150px;"></div>
+           <div class="left"  id="antal_kunder" style= "height: 200px; width=150px;"></div>
+           <div class="right"  id="users-doughnut-chart" style= "height: 200px; width=150px;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+         </div>
+         <p> Ovenstående eksempel på et dash-board giver således et hurtigt overblik over;   </p>
+         <ol type=a>
+             <li> Seneste uges besøgshistorik i forretning</li>
+             <li> Hvor stor en andel af vores app-brugere henvises i øjeblikket til jeres forretning </li>
+             <li> Hvor mange af de nuværende kunder er hhv. nye eller tilbagevendende </li>
+         </ol>
+         <br>
+       </div>
+       </div>
+       </div>
+
+
+<!--  Footer section -->
+<div id="footer">
+  <div class="container">
+    <div class="column">
+      <h4> Links </h4>
+      <p>
+        <a href="https://www.google.dk/"> Facebook </a>
+        <br>
+        <a href="https://www.google.dk/"> Twitter </a>
+      </p>
+    </div>
+    <div class="column">
+      <h4> My Store </h4>
+    </div>
+  </div>
+</div>
+
+  </body>
+  </html>
